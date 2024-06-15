@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Additional ignore rules
+personal_color/*.jpg
+personal_color/images/
+personal_color/models
+
+touchscreen/*.jpg
+*/__pycache__
+__pycache__
+
+results/
