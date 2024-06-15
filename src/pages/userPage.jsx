@@ -26,10 +26,9 @@ import {
     Fimg,
     Cimg,
     ImageText3,
-  
+
 } from "../styles/userPage";
 
-import facePalette from "../images/4.png"
 import summer_face1 from "../images/sum_face1.png"
 import summer_face2 from "../images/sum_face2.png"
 import summer_face3 from "../images/sum_face3.png"
@@ -67,7 +66,7 @@ function UserPage() {
     const [facePaletteImagePath, setFacePaletteImagePath] = useState('');
     const [mediaUrls, setMediaUrls] = useState({ imagePath: "", videoPath: "" });
 
-    
+
     //const { id } = useParams();
     //const [user, setUser] = useState(null);
 
@@ -77,23 +76,23 @@ function UserPage() {
     //    //.then(data => setUser(data))
     //    .catch(error => console.error('Error fetching user:', error));
     //}, [userId]);
-  
+
     useEffect(() => {
-        axios.get(`http://192.168.0.75:8080/api/user/get_result`, {
+        axios.get(`https://colorlog.site/api/api/user/get_result`, {
             params: { userId }
         })
-        .then(response => {
-            setResult(response.data.result);
-            setResultImagePath(response.data.imagePath.resultImagePath);
-            setFacePaletteImagePath(response.data.imagePath.facePaletteImagePath);
-        })
-        .catch(error => console.error('There was an error!', error));
+            .then(response => {
+                setResult(response.data.result);
+                setResultImagePath(response.data.imagePath.resultImagePath);
+                setFacePaletteImagePath(response.data.imagePath.facePaletteImagePath);
+            })
+            .catch(error => console.error('There was an error!', error));
     }, [userId]);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://192.168.0.75:8080/api/photogroup/get_photogroup', {
+                const response = await axios.get('https://colorlog.site/api/api/photogroup/get_photogroup', {
                     params: { userId }
                 });
                 setMediaUrls(response.data);
@@ -119,7 +118,7 @@ function UserPage() {
         const now = new Date();
         const minutes = now.getMinutes();  // 올바른 메서드 사용
         const filename = `file_${minutes}.${extension}`;
-    
+
         const link = document.createElement('a');
         link.href = url;
         link.download = filename;
@@ -132,7 +131,7 @@ function UserPage() {
     const data = {
         "여름 쿨톤": {
             bgColor: "#F3F8FF",
-            InfoBgColor : "#E8EEF7",
+            InfoBgColor: "#E8EEF7",
             palette: palette_summer,
             celebrities: [summer_face1, summer_face2, summer_face3],
             cosmetics_title: "Summer Cool Items",
@@ -148,7 +147,7 @@ function UserPage() {
         },
         "봄 웜톤": {
             bgColor: "rgba(240, 180, 179, 0.3)",
-            InfoBgColor : "#FFF6F6",
+            InfoBgColor: "#FFF6F6",
             palette: palette_spring,
             celebrities: [spring_face1, spring_face2, spring_face3],
             cosmetics_title: "Spring Warm Items",
@@ -166,7 +165,7 @@ function UserPage() {
         },
         "가을 웜톤": {
             bgColor: "#e7e1dc",
-            InfoBgColor : "rgba(242, 234, 230, 1)",
+            InfoBgColor: "rgba(242, 234, 230, 1)",
             palette: palette_autumn,
             celebrities: [autumn_face1, autumn_face2, autumn_face3],
             cosmetics_title: "Autumn Warm Items",
@@ -184,7 +183,7 @@ function UserPage() {
         },
         "겨울 쿨톤": {
             bgColor: "rgba(132, 126, 193, 0.2)",
-            InfoBgColor : "#F5F3FF",
+            InfoBgColor: "#F5F3FF",
             palette: palette_winter,
             celebrities: [winter_face1, winter_face2, winter_face3],
             cosmetics_title: "Winter Cool Items",
@@ -213,19 +212,19 @@ function UserPage() {
                 <Infobox bgColor={toneData.InfoBgColor}>
                     ※ QR코드 사진 / 동영상 저장 페이지는 인화 이후 1시간까지 보관 됩니다.
                 </Infobox>
-                <Buttonzone>                
+                <Buttonzone>
                     <button onClick={handleClick1}>사진 다운로드</button>
                     <button onClick={handleClick2}>동영상 다운로드</button>
                 </Buttonzone>
             </Header>
-            <MainContainer> 
+            <MainContainer>
                 <Contents>
                     <p>당신의 퍼스널 컬러는:</p>
                     <h1>{result}</h1>
                 </Contents>
                 <Contents>
                     <ImageText1>
-                        <div> 
+                        <div>
                             <Fimg src={resultImagePath} alt="얼굴 사진" />
                         </div>
                         <div>
@@ -259,7 +258,7 @@ function UserPage() {
                     <ImageText1>
                         <div>
                             <Contents2>
-                                <h1>{toneData.cosmetics_title}</h1> 
+                                <h1>{toneData.cosmetics_title}</h1>
                                 <h2>{toneData.cosmetics_name1}</h2>
                                 <h3>{toneData.cosmetics_name1_num}</h3>
                             </Contents2>
@@ -301,12 +300,11 @@ function UserPage() {
             <Margin2 />
         </Wrapper>
     );
-  
+
     // 기본적으로 로딩 상태 혹은 결과를 기다리는 메시지를 보여줄 수 있습니다.
     //return (
     //  <div>Loading...</div>
     //);
-  }
-  
-  export default UserPage;
-  
+}
+
+export default UserPage;

@@ -271,14 +271,19 @@ export const ImageText1 = styled.div`
   }
 `;
 
+
 export const Fimg = styled.img`
   width: 233px; /* 이미지 컨테이너의 너비 */
-  height: 287px;
+  height: 287px; /* 이미지 컨테이너의 높이 */
+  object-fit: cover; /* 이미지를 자르고 컨테이너에 맞춤 */
+  object-position: 75% center; /* 이미지의 오른쪽 중앙 부분을 표시 */
   @media screen and (max-width: 414px) {
     width: 128px; /* 이미지 컨테이너의 너비 */
-    height: 158px;
+    height: 158px; /* 이미지 컨테이너의 높이 */
+    object-position: 75% center; /* 모바일에서도 이미지의 오른쪽 중앙 부분을 표시 */
   }
 `;
+
 
 export const Cimg = styled.img`
   max-width: 270px;
